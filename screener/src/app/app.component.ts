@@ -15,7 +15,9 @@ export class AppComponent {
   posts: Observable<any>;
   getPosts() {
     console.log('Called GetPosts')
-    this.posts = this.http.get(this.ROOT_URL + '/posts')
+    const headers = new HttpHeaders().set('Authorization', 'auth-token');
+    const params = new HttpParams().set('userId', '1');
+    this.posts = this.http.get(this.ROOT_URL + '/posts', {headers}, {params})
   }
 
   createPost() {
