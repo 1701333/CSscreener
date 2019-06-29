@@ -3,10 +3,6 @@
   <h1>
     {{title}}
   </h1>
-  <button (click) = 'getPosts()'>Get Posts</button>
-  <div *ngFor="let post of posts | async">
-  {{ post | json }}
-  </div>
-  <button (click)="createPost()">Create Post</button>
-  {{ newPost | async | json }}
+  <button (click) = 'getGithubPosts()'>Get GitHub Posts</button>
+  {{ message | json}}
 </div>
