@@ -15,21 +15,14 @@ export class AppComponent {
   readonly clientSecret = '4dd1342dc309538c4802bf549ed8a11ab7566a58';
   constructor(private http: HttpClient) {}
 
-  posts: Observable<any>;
-  message: Observable<any>;
-  getDummyPosts() {
-    console.log('Called GetDummyPosts')
-    const headers = new HttpHeaders().set('Authorization', 'auth-token');
-    const params = new HttpParams().set('userId', '1');
-    this.posts = this.http.get(this.ROOT_URL + '/posts', {headers}, {params})
-  }
+  jsonMessages: Observable<any>;
 
-  getGithubPosts() {
-    console.log('Called GetGithubPosts')
+  getGithubRepos() {
+    console.log('Called GetGithubRepos')
     const headers = new HttpHeaders().set('Authorization', this.oauthtoken);
-    this.message = this.http.get(this.github_url + '/users/8bitOctoCat/repos?client_id ='+
+    this.jsonMessages = this.http.get(this.github_url + '/users/8bitOctoCat/repos?client_id ='+
     this.clientID+'&client_secret='+this.clientSecret)
-    this.message.subscribe(res => {
+    this.jsonMessages.subscribe(res => {
       console.log(res)
       this.message = res;
     })
